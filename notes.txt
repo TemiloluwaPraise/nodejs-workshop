@@ -1,0 +1,145 @@
+first dowmload node js
+text editor
+create a folder called notes-app
+open it in your text editor
+node -v
+>>create a folder
+>>mkdir notes-app
+>>create a file
+>>touch app.js
+>>cd into the notes-app(folder)
+>>open your text editor, create a console.log('starting app...).
+>>run it on you command node app.js
+
+require help us grab external or internal or third-party
+node modules in our app
+search node api on google click the first link
+you will get a list of node internal module
+click file system.
+fs.appendFile(path, data[, options], callback)
+
+in your app.js
+
+const fs = require("fs");
+
+fs.appendFileSync("greetings.txt", "hello world");
+
+run node app.js
+
+it will create a greeting.txt file
+
+>> create a notes.js
+console.log('starting notes....');
+
+next  >>add 
+const notes = require("./notes");
+to your app.js
+run node app.js
+
+using ES6 funtions
+function add(x, y) {
+  return x + y;
+}
+
+var add = (x, y) => {
+    return x + y
+}
+
+even better 
+var add = (x, y) => x + y;
+
+>>.in notes.js file
+console.log("starting notes.js....");
+
+var add = (x, y) => x + y;
+var sub = (x, y) => x - y;
+module.exports = {
+  add,
+  sub,
+};
+
+//without exporting the function
+//it wont work
+
+// module.exports.add = function add(x, y) {
+//     return x + y;
+//   }
+
+//OR
+// function add(x, y) {
+//     return x + y;
+//   }
+
+//   module.exports= {
+//     add
+//   }
+
+>>. in app.js console.log("starting app.js .......");
+
+const fs = require("fs");
+const notes = require("./notes");
+
+// fs.appendFileSync("greetings.txt", "hello world");
+
+console.log(notes.add(2, 5));
+console.log(notes.sub(2, 5));
+
+>> then run node app.js
+
+now lets use third party modules-- 
+modules other people has created
+>> Open
+npmjs.com
+search for yargs 
+yags helps you build command line tools
+
+to start using third_party module first we do 
+>> npm init
+npm install yargs --save (the thiird party module)
+>> check your package.json
+"dependency" : "yargs"
+
+>> in your app.js 
+const yargs = require('yargs');
+>>then
+console.log(process.argv);
+>>run node app.js list
+>> you get this
+starting app.js .......
+starting notes.js....
+[
+  'C:\\Program Files\\nodejs\\node.exe',
+  'C:\\Users\\oguny\\Desktop\\notes-app\\app.js',
+  'list'
+]
+
+>>in your app.js
+console.log('Process', process.argv);
+console.log('Yargs', yargs.argv);
+
+>>run node app.js read --title "notes-app" 
+--body "get me the body"
+>> you get this
+
+starting app.js .......
+starting notes.js....
+Process [
+  'C:\\Program Files\\nodejs\\node.exe',
+  'C:\\Users\\oguny\\Desktop\\notes-app\\app.js',
+  'read',
+  '--title',
+  'notes-app',
+  '--body',
+  'get me the body'
+]
+Yargs {
+  _: [ 'read' ],
+  title: 'notes-app',
+  body: 'get me the body',
+  '$0': 'app.js'
+}
+notes-app
+
+[{"title":"Arsenalrr","body":"dddddddddddddddddddddddddddddddddd"},
+{"title":"Note App2","body":"A note application create by me88888888888"},
+{"title":"Arsenal","body":"Why are they so good"}]
