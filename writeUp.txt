@@ -2,39 +2,82 @@ first download node js
 text editor
 create a folder called notes-app
 open it in your text editor
-node -v
+
+>> cd desktop >> go to desktop
 >>create a folder
 >>mkdir notes-app
 >>create a file
 >>touch app.js
 >>cd into the notes-app(folder)
->>open your text editor, create a console.log('starting app...).
+>>open your text editor,
+ create a console.log('starting app...).
+in app.json
+
+
 >>run it on you command node app.js
 
-require help us grab external or internal or third-party
-node modules in our app
+
+then open your terminal(git bash)
+
+>>>> to check the version of NODE
+how to know you have node installed
+node -v or node --version
+it will do the same thing.
+
+node is javascript outside the browser
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+https://nodejs.org/api/n-api.html
+
 search node api on google click the first link
 you will get a list of node internal module
+
 click file system.
+it has a very good documentation for all it modules.
+also tells you how to use it.
+
 fs.appendFile(path, data[, options], callback)
 
 in your app.js
 
+REQUIRE IN NODE
+require('the module')
+
+require help us grab external or internal or third-party node modules and let us use those modules in our app
+
 const fs = require("fs");
+
+(const fs(module) = require (a string parameter called "fs");
 
 fs.appendFileSync("greetings.txt", "hello world");
 
 run node app.js
 
 it will create a greeting.txt file
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
->> create a notes.js
+>> create a  notes.js file
+
+in the file create
 console.log('starting notes....');
 
 next  >>add 
 const notes = require("./notes");
 to your app.js
-run node app.js
+
+run node notes.js 
+you get >> starting notes....
+
+Now run>> node app.js
+
+you get >> starting app.js
+          starting notes....
+which means youve succesfully added notes app into app.js.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 using ES6 funtions
 function add(x, y) {
@@ -48,11 +91,30 @@ var add = (x, y) => {
 even better 
 var add = (x, y) => x + y;
 
+console.log(notes.add(2,2));
+
+now run >> node notes.js
+
+you get 4
+
+>>>>>>>>>>>>>>>>>>>
+
+in notes.js
+
+MODULE.EXPORTS
+this is to tell node we want to export the module so anyone could use it.
+
+module.exports.add = function(x,y){
+  return x + y;
+}
+
 >>.in notes.js file
 console.log("starting notes.js....");
 
 var add = (x, y) => x + y;
 var sub = (x, y) => x - y;
+
+
 module.exports = {
   add,
   sub,
@@ -85,8 +147,11 @@ console.log(notes.add(2, 5));
 console.log(notes.sub(2, 5));
 
 >> then run node app.js
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 now lets use third party modules-- 
+by third-party modules we mean module that other people has created.
+
 modules other people has created
 >> Open
 npmjs.com
@@ -95,14 +160,29 @@ yags helps you build command line tools
 
 to start using third_party module first we do 
 >> npm init
+
 npm install yargs --save (the third party module)
 >> check your package.json
 "dependency" : "yargs"
+>>>>> node_modules file
+this is where we have our dependency installed.
+all the dependency needed by your app is stored there
 
->> in your app.js 
+
+how we use the third party module we installed??
+
+>> in your app.js
+const fs = require('fs');
 const yargs = require('yargs');
+const notes = require('notes');
+
+console.log(notes.add(2, 5))
+console.log(notes.sub(2, 5))
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+remove the mathematical console.log
 >>then
 console.log(process.argv);
+
 >>run node app.js list
 >> you get this
 starting app.js .......
@@ -117,7 +197,10 @@ starting notes.js....
 console.log('Process', process.argv);
 console.log('Yargs', yargs.argv);
 
->>run node app.js read --title "notes-app" 
+>>run 
+for process.argv first then add yargs to it.
+
+node app.js read --title "notes-app" 
 --body "get me the body"
 >> you get this
 
@@ -140,10 +223,29 @@ Yargs {
 }
 notes-app
 
+yargs simplifies the information parsed.
+
+argv stands for argument vector
+
+>>>>>>>>>>>>>>>>>>>>>
+to simplify the process like yargs
+
+var title = process.argv[4];
+console.log(title);
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+var title = yargs.argv.title;
+console.log(title);
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+the section i thought you require 
+to use internal external and third party modules.
+
+
 --------------------------------------------------
 PART #2
 
-in this section we talk about saving a note tpo a test file
+in this section we talk about saving a note to a test file
 
 in your app.js
 console.log('Starting app.js..);

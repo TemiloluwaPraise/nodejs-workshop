@@ -22,7 +22,7 @@ var addingNote = (title, body) => {
 
   logNote(note);
 
-var double = notes.filter((note) => note.title === title);
+  var double = notes.filter((note) => note.title === title);
 
   if(double.length === 0) {
     notes.push(note);
