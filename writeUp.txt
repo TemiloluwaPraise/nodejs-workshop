@@ -1,6 +1,11 @@
+STEP 1.
+
 first download node js
+
 text editor
+
 create a folder called notes-app
+
 open it in your text editor
 
 >> cd desktop >> go to desktop
@@ -9,12 +14,15 @@ open it in your text editor
 >>create a file
 >>touch app.js
 >>cd into the notes-app(folder)
->>open your text editor,
- create a console.log('starting app...).
+
+>>open your text editor, or use "code ."
+
 in app.json
 
+ create a console.log('starting app...)
 
->>run it on you command node app.js
+
+>>>>>>>>>>>run it on you command node app.js
 
 
 then open your terminal(git bash)
@@ -24,30 +32,33 @@ how to know you have node installed
 node -v or node --version
 it will do the same thing.
 
+>>>>>>>>>>>>>>
+STEP 2.
+
+What is Node?
+Node is a javascript run time environment for javascript.
 node is javascript outside the browser
-
-
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+REQUIRE IN NODE
+require('the module')
+require help us grab external or internal or third-party node modules and let us use those modules in our app
 
+in the link below you can find all node internal module
 https://nodejs.org/api/n-api.html
 
 search node api on google click the first link
 you will get a list of node internal module
 
-click file system.
-it has a very good documentation for all it modules.
+click FILE SYSTEM. (fs)
+
+const fs = require("fs")
+It has a very good documentation for all it modules.
 also tells you how to use it.
 
 fs.appendFile(path, data[, options], callback)
 
-in your app.js
-
-REQUIRE IN NODE
-require('the module')
-
-require help us grab external or internal or third-party node modules and let us use those modules in our app
-
+>>>in your app.js
 const fs = require("fs");
 
 (const fs(module) = require (a string parameter called "fs");
@@ -58,26 +69,28 @@ run node app.js
 
 it will create a greeting.txt file
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+STEP 3.
+require("") also help us use other files module.
 >> create a  notes.js file
 
 in the file create
-console.log('starting notes....');
+console.log('starting notes.js...');
 
 next  >>add 
 const notes = require("./notes");
 to your app.js
 
-run node notes.js 
+>>run node notes.js 
 you get >> starting notes....
 
 Now run>> node app.js
 
-you get >> starting app.js
+you get >> starting app.js...
           starting notes....
 which means youve succesfully added notes app into app.js.
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+you can also re-use functions in another file
+
 
 using ES6 funtions
 function add(x, y) {
@@ -94,10 +107,7 @@ var add = (x, y) => x + y;
 console.log(notes.add(2,2));
 
 now run >> node notes.js
-
 you get 4
-
->>>>>>>>>>>>>>>>>>>
 
 in notes.js
 
@@ -120,12 +130,11 @@ module.exports = {
   sub,
 };
 
-//without exporting the function
-//it wont work
+without exporting the function it wont work
 
-// module.exports.add = function add(x, y) {
-//     return x + y;
-//   }
+ module.exports.add = function add(x, y) {
+     return x + y;
+   }
 
 //OR
 // function add(x, y) {
@@ -136,7 +145,7 @@ module.exports = {
 //     add
 //   }
 
->>. in app.js console.log("starting app.js .......");
+>>. in app.js console.log("starting app.js.....");
 
 const fs = require("fs");
 const notes = require("./notes");
@@ -147,26 +156,32 @@ console.log(notes.add(2, 5));
 console.log(notes.sub(2, 5));
 
 >> then run node app.js
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+Now you know how to use internal modules and external modules. 
+in the next step you will learn how to use third-party module. those are module that people created.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+STEP 4.
 now lets use third party modules-- 
 by third-party modules we mean module that other people has created.
 
 modules other people has created
 >> Open
-npmjs.com
+https://npmjs.com
 search for yargs 
-yags helps you build command line tools
+yargs helps you build command line tools
 
 to start using third_party module first we do 
 >> npm init
 
 npm install yargs --save (the third party module)
+
 >> check your package.json
 "dependency" : "yargs"
+
 >>>>> node_modules file
 this is where we have our dependency installed.
-all the dependency needed by your app is stored there
+all the dependency needed by your app is stored there.
+for example all the dependency needed by yargs
 
 
 how we use the third party module we installed??
@@ -178,12 +193,19 @@ const notes = require('notes');
 
 console.log(notes.add(2, 5))
 console.log(notes.sub(2, 5))
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-remove the mathematical console.log
+
+>>>>remove the mathematical console.log
 >>then
+
+const fs = require('fs');
+const yargs = require('yargs');
+const notes = require('notes');
+
+
 console.log(process.argv);
 
 >>run node app.js list
+
 >> you get this
 starting app.js .......
 starting notes.js....
@@ -192,6 +214,8 @@ starting notes.js....
   'C:\\Users\\oguny\\Desktop\\notes-app\\app.js',
   'list'
 ]
+var title = process.argv[4]
+console.log(title)
 
 >>in your app.js
 console.log('Process', process.argv);
@@ -204,7 +228,7 @@ node app.js read --title "notes-app"
 --body "get me the body"
 >> you get this
 
-starting app.js .......
+starting app.js....
 starting notes.js....
 Process [
   'C:\\Program Files\\nodejs\\node.exe',
@@ -232,7 +256,7 @@ to simplify the process like yargs
 
 var title = process.argv[4];
 console.log(title);
->>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>> remove process replace by the code below
 
 var title = yargs.argv.title;
 console.log(title);
@@ -244,6 +268,7 @@ to use internal external and third party modules.
 
 --------------------------------------------------
 PART #2
+--------------------------------------------------
 
 in this section we talk about saving a note to a test file
 
@@ -270,6 +295,8 @@ Starting app.js..
 starting notes.js....
 undefined undefined list
 
+the reason we get undefined is because we didnt give the body argument
+
 in your terminal
 node app.js add --title "note" --body "new note"
 
@@ -277,7 +304,7 @@ you get
 Starting app.js..
 starting notes.js....
 note new note add
-
+------------------
 how do we get this 
 console.log(yargs.argv);// in app.js
 then in your terminal
@@ -316,6 +343,7 @@ node app.js add
 node app.js remove
 node app.js read
 node app.js list
+node app.js jfdlsjdfhlshgl you get unknown command was used
 
 to use this in your notes.js 
 create your fs require file
@@ -327,12 +355,17 @@ function addingNote(title, body) {
   var note = {
     title,
     body,
-  };
+  };                //("notes.txt", note) you get object object
   fs.writeFileSync("notes.txt", JSON.stringify(note));
 
 module.export = {
   addingNote,
 };
+
+in the app.js command for add
+if (command === 'add') {
+  console.log('adding note')
+notes.addingNote(title, body)
 
 run this in your terminal
 node app.js add --title "notes-app" --body "get me the body"
@@ -341,6 +374,7 @@ a notes.txt is create and inside the file you get
 {"title":"notes-app","body":"get me the body"}
 
 run this in your terminal adding 2 to the title you realise it replaces the first one
+
 node app.js add --title "notes-app2" --body "get me the body"
 
 a notes.txt is create and inside the file you get 
@@ -349,8 +383,8 @@ a notes.txt is create and inside the file you get
 const fs = require('fs');
 
 function addingNote(title, body) {
-
 var notes = fs.readFileSync('notes.txt');
+console.log(notes)
 
 //comment this then run it in the terminal you get a buffer
 
@@ -389,7 +423,7 @@ to create an array of responses
 const fs = require("fs");
 
 function addingNote(title, body) {
-  var notes = [];
+  var notes = []; // all the object inside an array
   notes.push(JSON.parse(fs.readFileSync("notes.txt")));
 
   var note = {
@@ -422,6 +456,12 @@ node app.js add --title "notes-app2" --body "get me another  body"
 
 To fix it we use Try catch block
 
+try {
+   
+} catch(err) {
+
+}
+
 function addingNote(title, body) {
   var notes;
 try {
@@ -451,7 +491,7 @@ you see it worked but we can make our code cleaner
 
 function fetchNotes () {
  try {
-  return notes.push(JSON.parse(fs.readFileSync("notes.txt"));
+  return JSON.parse(fs.readFileSync("notes.txt"));
  } catch (err) {
    return [];
   }
@@ -480,9 +520,10 @@ Starting app.js..
 adding note
 
 >>>refactoring to arrow function
+
 var fetchNotes = () => {
  try {
-  return notes.push(JSON.parse(fs.readFileSync("notes.txt"));
+  return JSON.parse(fs.readFileSync("notes.txt"));
  } catch (err) {
    return [];
   }
@@ -505,6 +546,8 @@ module.exports = {
   addingNote,
 };
 ------------------------------------------
+PART 3
+------------------------------------------
 now let remove a note 
 first thing we do is read a file first
 
@@ -521,6 +564,10 @@ module.exports = {
   removeNote
 };
 
+if (command === "remove") {
+  console.log("removing note");
+  notes.removeNote(title);
+
 run this in your terminal
 node app.js remove --title "notes-app2"
 
@@ -535,7 +582,7 @@ For reading Note
 var readNote = (title) => {
   var notes = fetchNotes();
 
-  var filteredNotes = notes.filter((note) => note.title !== title)
+  var filteredNotes = notes.filter((note) => note.title === title)
 
   console.log(filteredNotes)
 
@@ -567,6 +614,19 @@ you get
 Starting app.js..
 reading note
 Title: notes-app1 Body: get me another  body
+
+var getAll =()=> {
+  var notes = fetchNotes()
+
+  console.log(notes)
+}
+
+in app.js
+
+else if (command === "list") {
+  console.log("listing all notes");
+  notes.getAllNotes();
+}
 
 ----------------------------------------------
 reactoring with logNote
@@ -619,7 +679,7 @@ var removeNote = (title) => {
 
   var filteredNotes = notes.filter((note) => note.title !== title);
 
-  logNote(filteredNotes[0]);
+  
 };
 
 var readNote = (title) => {

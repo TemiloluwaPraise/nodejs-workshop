@@ -1,7 +1,7 @@
-console.log("Starting app.js..");
+console.log("Starting app.js");
 
-const yargs = require("yargs");
-const notes = require("./notes.js");
+const yargs = require('yargs');
+const notes = require('./notes.js');
 const argv = yargs.argv;
 
 var title = yargs.argv.title;
@@ -19,7 +19,7 @@ if (command === "add") {
   notes.readNote(title);
 } else if (command === "list") {
   console.log("listing all notes");
-  notes.getAllNotes();
+  notes.getAll();
 } else {
-  console.log("unknown command was used!");
+  console.log("Unknown command was used!");
 }
